@@ -1,19 +1,19 @@
 $(document).ready(function() {
 
     $('#search-term').on('submit', function(event) {
-        var term = $('#query').val(),
-            event.preventDefault();
+        var term = $('#query').val();
 
-        getRequest(url);
+        event.preventDefault();
+        getRequest(term);
         $('#query').val(''); // clears input
     })
 
     function getRequest(searchTerm) {
-        var url = 'http://www.omdbapi.com',
-            params = {
-                s: searchTerm,
-                r: 'json'
-            }
+        var url = 'http://www.omdbapi.com';
+        params = {
+            s: searchTerm,
+            r: 'json'
+        }
 
         $.getJSON(url, params, function(data) {
             showResults(data.Search);
