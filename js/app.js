@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     $('#search-term').on('submit', function(event) {
         var term = $('#query').val(),
-            url = 'http://www.omdbapi.com/?s='+term+'&r=json';
             event.preventDefault();
 
         getRequest(url);
@@ -10,11 +9,16 @@ $(document).ready(function() {
     })
 
     function getRequest(searchTerm) {
-        $.getJSON(searchTerm, function(data) {
+        var url = 'http://www.omdbapi.com',
+            params = {
+                s: searchTerm,
+                r: 'json'
+            }
+
+        $.getJSON(url, params, function(data) {
             showResults(data.Search);
         });
     }
-
 
     function showResults(results) {
         $('#search-results').html(''); // removes prev search
