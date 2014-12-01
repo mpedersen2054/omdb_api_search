@@ -3,22 +3,24 @@ $(document).ready(function() {
     $('#search-term').on('submit', function(event) {
         var term = $('#query').val(),
             url = 'http://www.omdbapi.com/?s='+term+'&r=json';
+            event.preventDefault();
 
-        event.preventDefault();
+        getRequest(url);
+        $('#query').val(''); // clears input
+    })
 
-        $.getJSON(url, function(data) {
+    function getRequest(searchTerm) {
+        $.getJSON(searchTerm, function(data) {
             showResults(data.Search);
         });
-
-        // $('#query').val('');
-    })
+    }
 
 
     function showResults(results) {
         $('#search-results').html(''); // removes prev search
 
         for (var i=0; i<results.length; i++) {
-            $('#search-results').append(results[i].Title + '<br>');
+            $('#search-results').append('<p>'+results[i].Title+'</p>');
         }
     }
 
