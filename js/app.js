@@ -21,7 +21,7 @@ $(document).ready(function() {
     }
 
     function showResults(results) {
-        $('#search-results').html(''); // removes prev search
+        $('#search-results').html(''); // removes prev search results
 
         for (var i=0; i<results.length; i++) {
             $('#search-results').append('<p>'+results[i].Title+'</p>');
